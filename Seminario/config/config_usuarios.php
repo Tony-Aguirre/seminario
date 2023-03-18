@@ -31,6 +31,16 @@
           echo json_encode($respuesta );
           exit();
       }
+      // se valida que la contraseña tenga de 8 a 12 caracteres y sin espacios
+      if (strlen($password) < 8 || strlen($password) > 12) {
+        $respuesta = array ( 'error' => true , 'mensaje' => 'La contraseña debe tener entre 8 y 12 caracteres' );
+        echo json_encode($respuesta);
+        exit();
+      } elseif (preg_match("/^[\s]*$/", $password)) {
+        $respuesta = array ( 'error' => true , 'mensaje' => 'La contraseña no debe tener espacios' );
+        echo json_encode($respuesta);
+        exit();
+      }
 
       try {
         //code...
@@ -108,6 +118,16 @@
         $respuesta = array ( 'error' => true , 'mensaje' => 'El numero de empleado solo puede contener numeros' );
           echo json_encode($respuesta );
           exit();
+      }
+      // se valida que la contraseña tenga de 8 a 12 caracteres y sin espacios
+      if (strlen($password) < 8 || strlen($password) > 12) {
+        $respuesta = array ( 'error' => true , 'mensaje' => 'La contraseña debe tener entre 8 y 12 caracteres' );
+        echo json_encode($respuesta);
+        exit();
+      } elseif (preg_match("/^[\s]*$/", $password)) {
+        $respuesta = array ( 'error' => true , 'mensaje' => 'La contraseña no debe tener espacios' );
+        echo json_encode($respuesta);
+        exit();
       }
 
         //se crea la sentencia sql que se enviara a la base de datos
