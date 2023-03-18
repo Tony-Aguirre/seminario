@@ -7,8 +7,9 @@ const usuarios = fetch(`${URL}`,{
 })
 .then(x => x.json())
 .then(res =>{
+
   res.forEach(usuarios => {
-    
+ 
     body_table_usuarios.innerHTML += `
                     <tr>
 
@@ -81,6 +82,7 @@ let id_editar//variable para guardar el id del elemento que se va a editar
 const $form_editar = document.getElementById('form_editar')
 $form_editar.addEventListener('submit',(e)=>{
   e.preventDefault();
+  
   let nombre = document.getElementById("editar_nombre")
   let numEmpleado = document.getElementById("editar_numEmpleado")
   let permiso = document.getElementById("editar_permiso")
@@ -97,8 +99,9 @@ $form_editar.addEventListener('submit',(e)=>{
   .then(x => x.json())
   .then(res =>{
     alert(res.mensaje)
+    //  location.reload()
   })
- location.reload()
+
 })
 //Funcion para mostrar los datos en el formulario para editar
 function editar(value) {
@@ -124,7 +127,7 @@ function editar(value) {
 }
 //se crea un evento para eliminar usuario
 function eliminar(numero_empleado) {
-  fetch(`${URL}?id=${numero_empleado}`,{
+  fetch(`${URL}/${numero_empleado}`,{
     method: 'DELETE'
   })
   .then(x => x.json())
