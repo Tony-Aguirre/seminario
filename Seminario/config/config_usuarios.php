@@ -12,11 +12,25 @@
           echo json_encode($respuesta);
           exit();
       }
-
+      
       $nombre = $_POST["nombre"];
       $numEmpleado =$_POST["numEmpleado"];
       $password =md5($_POST["password"]);
       $tipo = $_POST["permiso"];
+      
+      //se valida que el nombre solo contenga letras y espacios
+      if (!preg_match("/^[a-zA-Z ]*$/", $nombre)) {
+        $respuesta = array('error' =>true , 'mensaje' => 'El nombre solo debe contener letras y espacios' );
+        echo json_encode($respuesta);
+        exit();
+      }
+
+      //se valida que el numero de empleado solo contenga numeros
+      if (!preg_match("/^[0-9]*$/", $nombre)) {
+        $respuesta = array('error' =>true , 'mensaje' => 'El numero de empleado solo debe contener numeros' );
+        echo json_encode($respuesta);
+        exit();
+      }
       
       try {
         //code...
