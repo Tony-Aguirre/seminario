@@ -18,6 +18,19 @@
       $password =md5($_POST["password"]);
       $tipo = $_POST["permiso"];
       
+      // se valida que el nombre solo contenga letras y espacios
+      if (!preg_match("/^[a-zA-Z ]*$/", $nombre)) {
+        $respuesta = array('error' =>true , 'mensaje' => 'El nombre solo puede contener letras y espacios' );
+          echo json_encode($respuesta);
+          exit();
+      }
+      // se valida que el numero de empleado solo contenga numeros
+      if (!preg_match("/^[0-9]*$/", $numEmpleado)) {
+        $respuesta = array('error' =>true , 'mensaje' => 'El numero de empleado solo puede contener numeros' );
+          echo json_encode($respuesta);
+          exit();
+      }
+      
       try {
         //code...
         $sentencia = "INSERT INTO usuarios (numero_empleado, nombre, password, tipo) VALUES ('$numEmpleado', '$nombre', '$password', '$tipo') ";
